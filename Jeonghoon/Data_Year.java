@@ -16,19 +16,79 @@ public class Data_Year {
 		BufferedWriter brwrite = null;
 		try {
 			br = Files.newBufferedReader(Paths.get("C:\\Users\\Baek\\Desktop\\SK데이터분석\\맥북\\train.csv"));
-			br_join = Files.newBufferedReader(Paths.get("C:\\Users\\Baek\\Desktop\\SK데이터분석\\맥북\\train_display_real.csv"));
+			br_join = Files
+					.newBufferedReader(Paths.get("C:\\Users\\Baek\\Desktop\\SK데이터분석\\맥북\\train_display_real.csv"));
 			brwrite = Files.newBufferedWriter(Paths.get("C:\\Users\\Baek\\Desktop\\SK데이터분석\\맥북\\complete.csv"));
 			String line = "";
 			String line_join = "";
 			while ((line = br.readLine()) != null && (line_join = br_join.readLine()) != null) {
 				System.out.println(line);
-				System.out.println(line_join);
 				// CSV 1행을 저장하는 리스트
 				List<String> tmpList = new ArrayList<String>();
 				List<String> tmpList_join = new ArrayList<String>();
-				line = line.replaceAll("\"", "");
-				String array[] = line.split(",");
-				String array_join[] = line_join.split(",");
+				String array[] = new String[12];
+				String array_join[] = new String[12];
+				int commacnt = 0;
+				for (int i = 0; i < line.length(); i++) {
+					if (line.charAt(i) == ',') {
+						commacnt++;
+					}
+				}
+
+				if (commacnt == 11) {
+					array = line.split(",");
+					array_join = line_join.split(",");
+				} else {
+					int tempcnt = 0;
+					int index = 0;
+					for (int i = line.length() - 1; i > -1; i--) {
+						if (line.charAt(i) == ',') {
+							tempcnt++;
+						}
+						if (tempcnt == 10) {
+							index = i;
+							break;
+						}
+					}
+					int tempcnt_join = 0;
+					int index_join = 0;
+					for (int i = line_join.length() - 1; i > -1; i--) {
+						if (line_join.charAt(i) == ',') {
+							tempcnt_join++;
+						}
+						if (tempcnt_join == 10) {
+							index_join = i;
+							break;
+						}
+					}
+					String temps = line.substring(index + 1, line.length());
+					String temps_join = line_join.substring(index_join + 1, line_join.length());
+					array[0] = line.substring(0, index);
+					array_join[0] = line_join.substring(0, index_join);
+					
+					for (int i = 0; i < array[0].length(); i++) {
+						if (array[0].charAt(i) == ',') {
+							array[1] = array[0].substring(i + 1, array[0].length());
+							array[0] = array[0].substring(0, i);
+							break;
+						}
+					}
+					
+					for (int i = 0; i < array_join[0].length(); i++) {
+						if (array_join[0].charAt(i) == ',') {
+							array_join[1] = array_join[0].substring(i + 1, array_join[0].length());
+							array_join[0] = array_join[0].substring(0, i);
+							break;
+						}
+					}
+					
+					String back[] = temps.split(",");
+					String back_join[] = temps_join.split(",");
+					for (int i = 0; i < 10; i++) {
+						array[i + 2] = back[i];
+						array_join[i + 2] = back_join[i];
+					}
+				}
 				String temp = array[1];
 				array[1] = array[1].toUpperCase(); // 임시로 전부 대문자로 변환
 				int year = array.length - 4;
