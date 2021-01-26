@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 
 if __name__ == '__main__':
-    # 하스웰(4세대,리프레시) 제품군 코드 담는 배열
+    #  하스웰(4세대,리프레시) 제품군 코드 담는 배열
     var = []
     # 하스웰(4세대,리프레시) 기입되어있는 name data open
     f = open('./codenameFolder/브로드웰(5세대).txt', 'r', encoding='utf-8')
