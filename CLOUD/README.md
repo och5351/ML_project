@@ -1,10 +1,9 @@
-# ML_project
+# Cloud 팀 프로젝트 [5팀]
 <hr>
 
-## 잘 해봅시다 ㅎㅎ
+## 2021 신입사원 교육 팀 프로젝트
+2021.1.29
 
 <hr>
 
-<li> 파이썬 버전 충동 방지를 위해 .gitignore 를 등록 해뒀습니다. </li>
-<li> .gitignore는 pycharm 기준으로 되어있습니다. </li>
-<li> ID 알려주시면 collaborator 초대 드리겟습니다. </li>
+<li> 김유민, 백정훈, 오찬해, 윤인호, 최지환 </li>
